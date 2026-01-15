@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { connectDB } from '@/lib/mongodb';
-import { sendEmail } from '@/lib/mailer';
+import  {sendMail}  from '@/lib/mailer';
 
 export async function POST(request) {
   try {
@@ -27,7 +27,7 @@ export async function POST(request) {
 
     // Send confirmation email
     try {
-      await sendEmail({
+      await sendMail({
         to: email,
         subject: 'Welcome to AgriGuard Newsletter!',
         html: `
