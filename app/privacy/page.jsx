@@ -107,9 +107,9 @@ export default function PrivacyPage() {
               If you have any questions about this privacy policy or our data practices, please contact us at:
             </p>
             <div className="bg-green-50 dark:bg-gray-700 p-4 rounded-lg">
-              <p className="font-semibold">Email: privacy@agriguard.com</p>
-              <p className="font-semibold">Phone: +91-XXXXXXXXXX</p>
-              <p className="font-semibold">Address: [Your Business Address]</p>
+              <p className="font-semibold">Email: agriguard.services@gmail.com</p>
+              <p className="font-semibold">Phone: +91-7388711487</p>
+              <p className="font-semibold">Address: Gorakhpur ,CL-1,Sector-7 ,Uttar Pradesh,India</p>
             </div>
           </div>
         </motion.div>
