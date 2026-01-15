@@ -4,10 +4,18 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
-export async function GET() {
+export async function GET(request) {
   try {
     await connectDB();
-    const products = await Product.find({});
+    const { searchParams } = new URL(request.url);
+    const category = searchParams.get('category');
+
+    let query = {};
+    if (category && category !== 'all') {
+      query.category = category;
+    }
+
+    const products = await Product.find(query);
     return NextResponse.json(products);
   } catch (err) {
     console.error("GET products error:", err);

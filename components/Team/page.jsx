@@ -7,43 +7,37 @@ import JoinUs from "../Join Us/page.jsx";
 const teamMembers = [
   {
     name: "Shailendra Sahani",
-    role: "",
+    role: "Developer & Team Lead",
     image:"/Shailendra.jpg",
-    linkedin: "",
+    linkedin: "www.linkedin.com/in/shailendrasahani/",
     email: "mailto:shailendrasahani273209@gmail.com",
-    twitter: "#",
-    github: "#",
-    bio: "Visionary leader passionate about transforming agriculture with technology.",
+    github: "https://github.com/ShailendraSahani",
+    bio: "MERN Stack Developer || React.js,||Next.js| Node.js, Express.js, MongoDB || B.Tech IT | Python, C, JavaScript | Tailwind CSS | Intern at Choice Connect || Local Lead of NASA Space Apps Gorakhpur || Passionate about coding and problem-solving.",
   },
   {
     name: "Aditya Kumar Ojha",
-    role: "Full Stack Developer",
+    role: "Developer",
     image:"/Aditya.jpg",
-    linkedin: "#",
-    email: "mailto:aarav@example.com",
-    twitter: "#",
-    github: "#",
+    linkedin: "https://www.linkedin.com/in/aditya-kumar-ojha/",
+    email: "mailto:adityaojha231356@gmail.com",
+    github: "https://github.com/Aditya231356",
     bio: "Building scalable applications and seamless user experiences.",
   },
   {
     name: "Shreya Pandey",
-    role: "UI/UX Designer",
+    role: "Developer",
     image: "/Shreya.jpg",
-    linkedin: "#",
-    email: "mailto:priya@example.com",
-    twitter: "#",
-    github: "#",
-    bio: "Designing intuitive interfaces that connect farmers with technology.",
+    linkedin: "https://www.linkedin.com/in/shreya-pandey028/",
+    email: "mailto:shreyapandey028@gmail.com",
+    github: "https://github.com/shreyaPandey028",
   },
   {
     name: "Samriddhi Srivastava",
-    role: "Data Analyst",
+    role: "Developer",
     image: "/Samriddhi.jpg",
-    linkedin: "#",
-    email: "mailto:rohan@example.com",
-    twitter: "#",
-    github: "#",
-    bio: "Turning data into actionable insights for smarter farming decisions.",
+    linkedin: "https://www.linkedin.com/in/samriddhi-srivastava-99694b2a9?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    email: "Shrivastavasamriddhi090@gmail.com",
+    github: "https://github.com/samriddhi028/Samriddhi-Srivastava",
   },
 ];
 
@@ -103,9 +97,6 @@ export default function TeamPage() {
               <div className="flex space-x-4 mt-4">
                 <a href={member.linkedin} target="_blank" rel="noreferrer">
                   <Linkedin className="w-6 h-6 text-green-700 hover:text-green-900 transition" />
-                </a>
-                <a href={member.twitter} target="_blank" rel="noreferrer">
-                  <Twitter className="w-6 h-6 text-blue-500 hover:text-blue-700 transition" />
                 </a>
                 <a href={member.github} target="_blank" rel="noreferrer">
                   <Github className="w-6 h-6 text-gray-800 hover:text-black transition" />

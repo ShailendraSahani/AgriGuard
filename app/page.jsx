@@ -49,12 +49,12 @@ export default function HomePage() {
     document.documentElement.classList.toggle("dark", isDarkMode);
   }, [isDarkMode]);
   const categories = [
-    { name: "Seeds", href: "/category/seeds", icon: "🌱" },
-    { name: "Fertilizers", href: "/category/fertilizers", icon: "🧪" },
-    { name: "Tools", href: "/category/tools", icon: "🔧" },
-    { name: "Pesticides", href: "/category/pesticides", icon: "🌿" },
-    { name: "Irrigation", href: "/category/irrigation", icon: "💧" },
-    { name: "Services", href: "/services1", icon: "🛠️" }
+    { name: "Seeds", href: "/Marketplace?category=seeds", icon: "🌱" },
+    { name: "Fertilizers", href: "/Marketplace?category=fertilizers", icon: "🧪" },
+    { name: "Tools", href: "/Marketplace?category=tools", icon: "🔧" },
+    { name: "Pesticides", href: "/Marketplace?category=pesticides", icon: "🌿" },
+    { name: "Irrigation", href: "/Marketplace?category=irrigation", icon: "💧" },
+    { name: "Services", href: "/Services1", icon: "🛠️" }
   ];
 
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
@@ -246,9 +246,9 @@ export default function HomePage() {
             <h4 className="font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2 text-green-200">
               <li><Link href="/About" className="hover:text-white">About Us</Link></li>
-              <li><Link href="/Services" className="hover:text-white">Services</Link></li>
+              <li><Link href="/Services1" className="hover:text-white">Services</Link></li>
               <li><Link href="/Marketplace" className="hover:text-white">Marketplace</Link></li>
-              <li><Link href="/Contact" className="hover:text-white">Contact</Link></li>
+              <li><Link href="/contact" className="hover:text-white">Contact</Link></li>
             </ul>
           </div>
           <div>

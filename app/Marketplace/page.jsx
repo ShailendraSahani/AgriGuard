@@ -4,13 +4,14 @@
 import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
 import { useSession } from "next-auth/react";
-import { 
-  Search, 
-  Filter, 
-  ArrowUpDown, 
-  ShoppingCart, 
-  Wheat, 
-  Sprout, 
+import { useRouter, useSearchParams } from "next/navigation";
+import {
+  Search,
+  Filter,
+  ArrowUpDown,
+  ShoppingCart,
+  Wheat,
+  Sprout,
   Plus,
   Upload,
   Leaf,
@@ -39,16 +40,28 @@ export default function Marketplace() {
   const modalRef = useRef(null);
 
   const { data: session, status } = useSession();
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
-  const categories = ["all", "fruits", "vegetables", "grains", "dairy"];
+  const categories = ["all", "seeds", "fertilizers", "tools", "pesticides", "irrigation", "services"];
 
   const categoryIcons = {
-    fruits: "🍎",
-    vegetables: "🥕",
-    grains: "🌾",
-    dairy: "🥛",
+    seeds: "🌱",
+    fertilizers: "🧪",
+    tools: "🔧",
+    pesticides: "🌿",
+    irrigation: "💧",
+    services: "🛠️",
     all: "🌱"
   };
+
+  // Set initial category from URL params
+  useEffect(() => {
+    const categoryParam = searchParams.get('category');
+    if (categoryParam && categories.includes(categoryParam)) {
+      setSelectedCategory(categoryParam);
+    }
+  }, [searchParams]);
 
   // Reset quantity when modal opens with a new product
   useEffect(() => {
