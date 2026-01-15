@@ -161,7 +161,7 @@ export default function HomePage() {
       {/* Featured Products */}
 
       {/* Why Choose AgriGuard Section */}
-      <section className="py-20 px-6 bg-gradient-to-br from-green-600 via-green-500 to-pink-400 dark:from-gray-800 dark:to-gray-900">
+      <section className="py-20 px-6 bg-gradient-to-br from-green-600 via-green-500 to-yellow-400 dark:from-gray-800 dark:to-gray-900">
         <div className="max-w-6xl mx-auto">
           <motion.h2
             className="text-4xl font-bold text-center text-green-900 dark:text-green-300 mb-12"
