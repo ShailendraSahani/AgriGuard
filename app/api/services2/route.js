@@ -1,4 +1,4 @@
-import connectDB from "@/lib/mongodb";
+import {connectDB} from "@/lib/mongodb";
 import Service from "@/Models/Service"; // Use lowercase 'models'
 import { NextResponse } from "next/server";
 

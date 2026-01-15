@@ -1,4 +1,4 @@
-import connectDB from "@/lib/mongodb";
+import {connectDB} from "@/lib/mongodb";
 import Order from "@/Models/Order";
 import Product from "@/Models/Product";
 import Cart from "@/Models/Cart";

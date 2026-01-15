@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
-import connectDB  from "@/lib/mongodb";
+import {connectDB}  from "@/lib/mongodb";
 import User from "@/Models/User";
 
 export async function POST(req) {

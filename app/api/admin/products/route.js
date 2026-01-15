@@ -1,11 +1,11 @@
-import connectToDB from "@/lib/mongodb.js";
+import {connectDB} from "@/lib/mongodb.js";
 import Product from "@/Models/Product.js";
 import User from "@/Models/User.js";
 import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    await connectToDB();
+    await connectDB();
 
     const products = await Product.find({})
       .populate('seller', 'name')
@@ -37,7 +37,7 @@ export async function DELETE(req) {
       return NextResponse.json({ error: 'Product ID required' }, { status: 400 });
     }
 
-    await connectToDB();
+    await connectDB();
     const deletedProduct = await Product.findByIdAndDelete(id);
 
     if (!deletedProduct) {

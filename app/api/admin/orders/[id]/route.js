@@ -1,4 +1,4 @@
-import connectToDB from "@/lib/mongodb.js";
+import {connectDB} from "@/lib/mongodb.js";
 import Order from "@/Models/Order.js";
 import User from "@/Models/User.js";
 import { NextResponse } from "next/server";
@@ -15,7 +15,7 @@ export async function PATCH(req, { params }) {
       return NextResponse.json({ error: 'Order ID and status required' }, { status: 400 });
     }
 
-    await connectToDB();
+    await connectDB();
     const updatedOrder = await Order.findByIdAndUpdate(
       id,
       { status },

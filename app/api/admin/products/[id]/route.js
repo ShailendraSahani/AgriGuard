@@ -1,4 +1,4 @@
-import connectToDB from "@/lib/mongodb.js";
+import {connectDB} from "@/lib/mongodb.js";
 import Product from "@/Models/Product.js";
 import { NextResponse } from "next/server";
 
@@ -10,7 +10,7 @@ export async function DELETE(req, { params }) {
       return NextResponse.json({ error: 'Product ID required' }, { status: 400 });
     }
 
-    await connectToDB();
+    await connectDB();
     const deletedProduct = await Product.findByIdAndDelete(id);
 
     if (!deletedProduct) {

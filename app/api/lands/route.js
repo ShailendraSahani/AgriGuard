@@ -1,5 +1,5 @@
 import { v2 as cloudinary } from "cloudinary";
-import connectDB from "@/lib/mongodb";
+import {connectDB} from "@/lib/mongodb";
 import Land from "@/Models/Land";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";

@@ -1,4 +1,4 @@
-import connectToDB from "@/lib/mongodb.js";
+import {connectDB} from "@/lib/mongodb.js";
 import User from "@/Models/User.js";
 import { NextResponse } from "next/server";
 
@@ -10,7 +10,7 @@ export async function DELETE(req, { params }) {
       return NextResponse.json({ error: 'User ID required' }, { status: 400 });
     }
 
-    await connectToDB();
+    await connectDB();
     const deletedUser = await User.findByIdAndDelete(id);
 
     if (!deletedUser) {

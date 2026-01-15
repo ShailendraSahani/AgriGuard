@@ -1,4 +1,4 @@
-import dbConnect from "@/lib/mongodb.js";
+import {connectDB} from "@/lib/mongodb.js";
 import Product from "@/Models/Product";
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
@@ -6,7 +6,7 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 export async function GET() {
   try {
-    await dbConnect();
+    await connectDB();
     const products = await Product.find({});
     return NextResponse.json(products);
   } catch (err) {
@@ -20,7 +20,7 @@ export async function GET() {
 
 export async function POST(req) {
   try {
-    await dbConnect();
+    await connectDB();
     const session = await getServerSession(authOptions);
     if (!session) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });

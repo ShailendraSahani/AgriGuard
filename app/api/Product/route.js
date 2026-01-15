@@ -1,4 +1,4 @@
-import connectDB from "@/lib/mongodb";
+import {connectDB} from "@/lib/mongodb";
 import Product from "@/Models/Product";
 
 export async function GET() {

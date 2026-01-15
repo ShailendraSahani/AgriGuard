@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import Razorpay from "razorpay";
-import connectDB from "@/lib/mongodb";
+import {connectDB} from "@/lib/mongodb";
 import Land from "@/Models/Land";
 
 const razorpay = new Razorpay({

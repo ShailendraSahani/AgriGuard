@@ -1,11 +1,11 @@
-import connectToDB from "@/lib/mongodb.js";
+import {connectDB} from "@/lib/mongodb.js";
 import User from "@/Models/User.js";
 import Order from "@/Models/Order.js";
 import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    await connectToDB();
+    await connectDB();
 
     const users = await User.find({}).select('name email role status createdAt');
 
@@ -40,7 +40,7 @@ export async function DELETE(req) {
       return NextResponse.json({ error: 'User ID required' }, { status: 400 });
     }
 
-    await connectToDB();
+    await connectDB();
     const deletedUser = await User.findByIdAndDelete(id);
 
     if (!deletedUser) {

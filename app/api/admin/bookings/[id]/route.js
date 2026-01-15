@@ -1,9 +1,9 @@
-import connectToDB from "@/lib/mongodb.js";
+import {connectDB} from "@/lib/mongodb.js";
 import Booking from "@/Models/Booking.js";
 
 export default async function handler(req, res) {
   if (req.method === "GET") {
-    await connectToDB();
+    await connectDB();
     const bookings = await Booking.find({}).sort({ date: -1 });
     return res.status(200).json(bookings);
   }

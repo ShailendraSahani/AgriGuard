@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import dbConnect from "@/lib/mongodb";
+import {connectDB} from "@/lib/mongodb";
 import Order from "@/Models/Order";
 import Product from "@/Models/Product";
 import User from "@/Models/User";
@@ -7,7 +7,7 @@ import { sendWhatsApp } from "@/lib/whatsapp";
 
 export async function POST(req) {
   try {
-    await dbConnect();
+    await connectDB();
 
     const { userEmail, items } = await req.json();
 
@@ -60,7 +60,7 @@ export async function POST(req) {
 
 export async function GET(req) {
   try {
-    await dbConnect();
+    await connectDB();
 
     const url = new URL(req.url);
     const userEmail = url.searchParams.get("userEmail");

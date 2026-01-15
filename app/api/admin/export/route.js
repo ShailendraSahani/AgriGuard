@@ -1,4 +1,4 @@
-import connectToDB from "@/lib/mongodb.js";
+import {connectDB} from "@/lib/mongodb.js";
 import User from "@/Models/User.js";
 import Order from "@/Models/Order.js";
 import Product from "@/Models/Product.js";
@@ -39,7 +39,7 @@ export async function GET(req) {
       return NextResponse.json({ error: 'Tab parameter required' }, { status: 400 });
     }
 
-    await connectToDB();
+    await connectDB();
     let data = [];
     let filename = '';
 

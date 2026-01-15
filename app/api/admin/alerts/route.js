@@ -1,11 +1,11 @@
-import connectToDB from "@/lib/mongodb.js";
+import {connectDB} from "@/lib/mongodb.js";
 import Product from "@/Models/Product.js";
 import Order from "@/Models/Order.js";
 import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    await connectToDB();
+    await connectDB();
 
     const alerts = [];
 

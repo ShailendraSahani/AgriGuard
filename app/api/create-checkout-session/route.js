@@ -1,46 +1,67 @@
 // app/api/create-checkout-session/route.js
-import connectDB from "@/lib/mongodb";
+import { connectDB } from "@/lib/mongodb";
 import Order from "@/Models/Order";
-import Product from "@/Models/Product";
-import Stripe from "stripe";
-
-if (!process.env.STRIPE_SECRET_KEY) {
-  throw new Error("STRIPE_SECRET_KEY is not defined in environment variables");
-}
-
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+import Razorpay from "razorpay";
 
 export async function POST(req) {
+  // ✅ env check INSIDE function
+  if (
+    !process.env.RAZORPAY_KEY_ID ||
+    !process.env.RAZORPAY_SECRET_KEY
+  ) {
+    return new Response(
+      JSON.stringify({ error: "Razorpay keys missing" }),
+      { status: 500 }
+    );
+  }
+
   const body = await req.json();
   const { orderId } = body;
-  if (!orderId) return new Response(JSON.stringify({ error: "orderId required" }), { status: 400 });
+
+  if (!orderId) {
+    return new Response(
+      JSON.stringify({ error: "orderId required" }),
+      { status: 400 }
+    );
+  }
 
   await connectDB();
+
   const order = await Order.findById(orderId).populate("items.product");
-  if (!order) return new Response(JSON.stringify({ error: "order not found" }), { status: 404 });
+  if (!order) {
+    return new Response(
+      JSON.stringify({ error: "Order not found" }),
+      { status: 404 }
+    );
+  }
 
-  // Create line_items for Stripe
-  const line_items = order.items.map(i => ({
-    price_data: {
-      currency: "inr",
-      product_data: { name: i.product.name },
-      unit_amount: Math.round(i.price * 100),
-    },
-    quantity: i.quantity,
-  }));
-
-  const session = await stripe.checkout.sessions.create({
-    payment_method_types: ["card"],
-    line_items,
-    mode: "payment",
-    success_url: `${process.env.NEXT_PUBLIC_APP_URL}/orders?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/orders`,
-    metadata: { orderId: order._id.toString() },
+  // ✅ Razorpay instance INSIDE function
+  const razorpay = new Razorpay({
+    key_id: process.env.RAZORPAY_KEY_ID,
+    key_secret: process.env.RAZORPAY_SECRET_KEY,
   });
 
-  // store session id
-  order.stripeSessionId = session.id;
+  // ✅ Razorpay order creation (REAL API)
+  const razorpayOrder = await razorpay.orders.create({
+    amount: Math.round(order.totalAmount * 100), // paise
+    currency: "INR",
+    receipt: order._id.toString(),
+    notes: {
+      orderId: order._id.toString(),
+    },
+  });
+
+  // save razorpay order id
+  order.razorpayOrderId = razorpayOrder.id;
   await order.save();
 
-  return new Response(JSON.stringify({ url: session.url }));
+  return new Response(
+    JSON.stringify({
+      orderId: razorpayOrder.id,
+      amount: razorpayOrder.amount,
+      currency: razorpayOrder.currency,
+      key: process.env.RAZORPAY_KEY_ID, // frontend ke liye
+    }),
+    { status: 200 }
+  );
 }

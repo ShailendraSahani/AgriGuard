@@ -1,5 +1,5 @@
 // app/api/cart/route.js
-import connectDB from "@/lib/mongodb";
+import {connectDB} from "@/lib/mongodb";
 import Cart from "@/Models/Cart";
 import Product from "@/Models/Product";
 

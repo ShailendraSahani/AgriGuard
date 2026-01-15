@@ -1,4 +1,4 @@
-import connectDB from "@/lib/mongodb.js";
+import {connectDB} from "@/lib/mongodb.js";
 import Booking from "@/Models/Booking.js";
 import { sendWhatsApp } from "@/lib/whatsapp.js";
 

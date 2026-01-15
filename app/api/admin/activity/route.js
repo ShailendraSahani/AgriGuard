@@ -1,4 +1,4 @@
-import connectToDB from "@/lib/mongodb.js";
+import {connectDB} from "@/lib/mongodb.js";
 import User from "@/Models/User.js";
 import Order from "@/Models/Order.js";
 import Product from "@/Models/Product.js";
@@ -7,7 +7,7 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    await connectToDB();
+    await connectDB();
 
     // Get recent activities from different models (last 10 total)
     const recentUsers = await User.find({}).sort({ _id: -1 }).limit(3).select('name email createdAt');

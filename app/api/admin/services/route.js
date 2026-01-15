@@ -1,4 +1,4 @@
-import connectToDB from "@/lib/mongodb.js";
+import {connectDB} from "@/lib/mongodb.js";
 import Service from "@/Models/Service.js";
 import User from "@/Models/User.js";
 import Booking from "@/Models/Booking.js";
@@ -6,7 +6,7 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    await connectToDB();
+    await connectDB();
 
     const services = await Service.find({})
       .populate('provider', 'name')
@@ -44,7 +44,7 @@ export async function DELETE(req) {
       return NextResponse.json({ error: 'Service ID required' }, { status: 400 });
     }
 
-    await connectToDB();
+    await connectDB();
     const deletedService = await Service.findByIdAndDelete(id);
 
     if (!deletedService) {

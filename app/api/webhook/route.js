@@ -1,17 +1,20 @@
 import { buffer } from "micro";
-import Stripe from "stripe";
-import connectDB from "@/lib/mongodb.js";
+import Razorpay from "razorpay";
+import {connectDB} from "@/lib/mongodb.js";
 import Booking from "@/Models/Booking.js";
 import Land from "@/Models/Land.js";
 import { transporter } from "@/lib/mailer.js";
 import { sendWhatsApp } from "@/lib/whatsapp.js";
 export const config = { api: { bodyParser: false } };
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+const razorpay = new Razorpay({
+  key_id: process.env.RAZORPAY_KEY_ID,
+  key_secret: process.env.RAZORPAY_SECRET_KEY
+});
 
 export async function POST(req) {
   const body = await req.text();
-  const sig = req.headers.get("stripe-signature");
+  const sig = req.headers.get("razorpay-signature");
 
   let event;
   try {

@@ -1,6 +1,6 @@
 import {connectDB} from "@/lib/mongodb";
 import Booking from "@/Models/Booking";
-import { sendMail } from "@/lib/mail";
+import { sendMail } from "@/lib/mailer";
 import { sendWhatsApp } from "@/lib/whatsapp";
 
 export default async function handler(req, res) {
